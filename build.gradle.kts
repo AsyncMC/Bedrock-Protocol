@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.3.72"
-    id("org.sonarqube") version "2.8"
     jacoco
 }
 
@@ -19,27 +18,6 @@ val moduleName = "org.github.asyncmc.protocol.bedrock"
 repositories {
     jcenter()
     maven(url = "https://repo.gamemods.com.br/public/")
-}
-
-sonarqube {
-    properties {
-        property("sonar.scm.provider", "git")
-        //property("sonar.jacoco.reportPaths", allTestCoverageFile)
-        property("sonar.host.url", project.findProperty("asyncmc.sonar.host.url") ?: System.getenv("asyncmc_sonar_host_url"))
-        property("sonar.login", project.findProperty("asyncmc.sonar.login.token")?.takeUnless { it.toString().startsWith("<secret") } ?: System.getenv("litecraft_sonar_login_token")?.takeIf { it.isNotBlank() } ?: System.getenv("SONAR_TOKEN"))
-        property("sonar.organization", project.findProperty("asyncmc.sonar.organization") ?: System.getenv("asyncmc_sonar_organization"))
-        property("sonar.projectKey",project.findProperty("asyncmc.sonar.projectKey") ?: System.getenv("asyncmc_sonar_projectKey"))
-        property("sonar.projectName", project.findProperty("asyncmc.sonar.projectName") ?: System.getenv("asyncmc_sonar_projectName"))
-        property("sonar.rootModuleName", project.findProperty("asyncmc.sonar.rootModuleName") ?: System.getenv("asyncmc_sonar_rootModuleName"))
-        property("sonar.cpd.cross_project", true)
-        property("sonar.java.source", "14")
-        //property("sonar.java.binaries", "build/libs/xyz-0.0.1-SNAPSHOT.jar")
-        property("sonar.java.coveragePlugin", "jacoco")
-        property("sonar.sources", "src/main")
-        property("sonar.tests", "src/test")
-        //property("sonar.java.test.binaries", "build/classes/java/test")
-        property("sonar.coverage.jacoco.xmlReportPaths", "$buildDir/reports/jacoco/codeCoverageReport.xml")
-    }
 }
 
 tasks.withType<JavaCompile>().configureEach {
@@ -116,8 +94,4 @@ tasks {
             html.isEnabled = true
         }
     }
-}
-
-tasks.named("sonarqube") {
-    dependsOn("jacocoTestReport")
 }
