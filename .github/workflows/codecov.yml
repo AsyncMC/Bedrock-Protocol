@@ -30,7 +30,7 @@ jobs:
       if: success()
       with:
         name: Coverage Report
-        path: build/reports/jacoco/test/jacocoTestReport.xml
+        path: build/reports/jacoco/test
       # Runs codecov
     - uses: codecov/codecov-action@v1
       with:
