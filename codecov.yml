@@ -1,3 +1,13 @@
+coverage:
+  status:
+    project:
+      default: false  # disable the default status that measures entire project
+        test:  # declare a new status context "tests"
+          target: 100%  # we always want 100% coverage here
+          paths: "src/test/"  # only include coverage in "tests/" folder
+        main:  # declare a new status context "app"
+          paths: "src/main/"  # remove all files in "tests/"
+
 fixes:
   - "::src/main/kotlin/"
-  
+
