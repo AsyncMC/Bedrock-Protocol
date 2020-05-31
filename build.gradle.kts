@@ -9,6 +9,11 @@ plugins {
 group = "com.github.asyncmc"
 version = "0.1.0-SNAPSHOT"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_13
+}
+
 val moduleName = "org.github.asyncmc.protocol.bedrock"
 
 repositories {
