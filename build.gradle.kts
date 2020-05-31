@@ -5,15 +5,12 @@ plugins {
     jacoco
 }
 
-group = "com.github.asyncmc"
-version = "0.1.0-SNAPSHOT"
-
 java {
-    sourceCompatibility = JavaVersion.VERSION_14
+    sourceCompatibility = JavaVersion.VERSION_13
     targetCompatibility = JavaVersion.VERSION_13
 }
 
-val moduleName = "org.github.asyncmc.protocol.bedrock"
+val moduleName = "com.github.asyncmc.protocol.bedrock"
 
 repositories {
     jcenter()
