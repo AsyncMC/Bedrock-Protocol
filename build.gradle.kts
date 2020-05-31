@@ -110,7 +110,7 @@ jacoco {
 tasks {
     named<JacocoReport>("jacocoTestReport") {
         dependsOn("test")
-        classDirectories.setFrom(files("${buildDir}/classes"))
+        classDirectories.setFrom(files("${buildDir}/classes/kotlin/main"))
         reports {
             xml.isEnabled = true
             html.isEnabled = true
