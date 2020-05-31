@@ -4,9 +4,11 @@ coverage:
       default: false  # disable the default status that measures entire project
       test:  # declare a new status context "tests"
         target: 100%  # we always want 100% coverage here
+        base: auto
         paths: "src/test/"  # only include coverage in "tests/" folder
       main:  # declare a new status context "app"
         paths: "src/main/"  # remove all files in "tests/"
+        base: auto
 
 comment:
   layout: "reach, diff, flags, files"
