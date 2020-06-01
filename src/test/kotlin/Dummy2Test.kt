@@ -1,4 +1,4 @@
-import dummy.Dummy2
+import com.github.asyncmc.bedrock.dummy.Dummy2
 import org.junit.jupiter.api.Test
 
 internal class Dummy2Test {
