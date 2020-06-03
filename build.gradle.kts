@@ -26,7 +26,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = "13"
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.contracts.ExperimentalContracts"
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.contracts.ExperimentalContracts,kotlin.RequiresOptIn,kotlin.ExperimentalUnsignedTypes"
 }
 
 tasks.named<JavaCompile>("compileJava") {
@@ -52,9 +52,14 @@ plugins.withType<JavaPlugin>().configureEach {
     }
 }
 
+val ktorVersion = findProperty("ktor.version")
+
 dependencies {
     api(kotlin("stdlib-jdk8", embeddedKotlinVersion))
     api(kotlin("reflect", embeddedKotlinVersion))
+
+    implementation("org.jctools:jctools-core:3.0.0")
+    implementation("io.ktor:ktor-network:$ktorVersion")
 
     testImplementation(kotlin("test-junit5", embeddedKotlinVersion))
 
