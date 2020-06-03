@@ -26,7 +26,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = "13"
-    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.contracts.ExperimentalContracts,kotlin.RequiresOptIn,kotlin.ExperimentalUnsignedTypes"
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
 tasks.named<JavaCompile>("compileJava") {
@@ -60,6 +60,7 @@ dependencies {
 
     implementation("org.jctools:jctools-core:3.0.0")
     implementation("io.ktor:ktor-network:$ktorVersion")
+    implementation("com.github.asyncmc:raknet-protocol:0.1.0-SNAPSHOT")
 
     testImplementation(kotlin("test-junit5", embeddedKotlinVersion))
 
