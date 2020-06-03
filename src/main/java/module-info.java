@@ -1,4 +1,5 @@
 module com.github.asyncmc.protocol.bedrock {
+    requires com.github.asyncmc.protocol.raknet;
     requires kotlin.stdlib;
     requires ktor.network;
     requires kotlinx.coroutines.core;
