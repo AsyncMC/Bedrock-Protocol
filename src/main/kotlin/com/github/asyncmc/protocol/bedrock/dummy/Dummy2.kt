@@ -1,5 +1,5 @@
 /*
- *     AsyncMC's Bedrock Protocol - An open source Minecraft Bedrock Edition protocol library implementation
+ *     AsyncMC's Java Protocol - An open source Minecraft Java Edition protocol library implementation
  *     Copyright (C) 2020 joserobjr@gamemods.com.br
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.github.asyncmc.bedrock.dummy
+package com.github.asyncmc.protocol.bedrock.dummy
 
 class Dummy2 {
     fun codecovNeedsMoreFiles(areYouWorkingNow: String) {

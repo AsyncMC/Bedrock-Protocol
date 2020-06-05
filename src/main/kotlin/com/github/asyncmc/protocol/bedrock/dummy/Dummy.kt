@@ -1,5 +1,5 @@
 /*
- *     AsyncMC's Bedrock Protocol - An open source Minecraft Bedrock Edition protocol library implementation
+ *     AsyncMC's Java Protocol - An open source Minecraft Java Edition protocol library implementation
  *     Copyright (C) 2020 joserobjr@gamemods.com.br
  *
  *     This program is free software: you can redistribute it and/or modify
@@ -16,13 +16,12 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import com.github.asyncmc.bedrock.dummy.Dummy
-import org.junit.jupiter.api.Test
+package com.github.asyncmc.protocol.bedrock.dummy
 
-internal class DummyTest {
-    @Test
-    fun dummyTest() {
-        val dummy = Dummy()
-        dummy.codecov("i don't know")
+class Dummy {
+    fun codecov(areYouWorking: String) {
+        if (areYouWorking == "sure") {
+            println("cool!")
+        }
     }
 }
