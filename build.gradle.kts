@@ -1,18 +1,23 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.31"
     jacoco
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_13
-    targetCompatibility = JavaVersion.VERSION_13
+    sourceCompatibility = JavaVersion.VERSION_15
+    targetCompatibility = JavaVersion.VERSION_15
+}
+
+kotlin {
+    explicitApi()
 }
 
 val moduleName = "com.github.asyncmc.protocol.bedrock"
 
 repositories {
+    mavenCentral()
     jcenter()
     maven(url = "https://repo.gamemods.com.br/public/")
 }
@@ -25,7 +30,7 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "13"
+    kotlinOptions.jvmTarget = "15"
     kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
 
@@ -55,14 +60,16 @@ plugins.withType<JavaPlugin>().configureEach {
 val ktorVersion = findProperty("ktor.version")
 
 dependencies {
-    api(kotlin("stdlib-jdk8", embeddedKotlinVersion))
-    api(kotlin("reflect", embeddedKotlinVersion))
+    api(kotlin("stdlib-jdk8"))
+    api(kotlin("reflect"))
+
+    implementation("com.github.asyncmc:raknet-interface:0.1.0-SNAPSHOT")
+    implementation("com.github.asyncmc:module-api:0.1.0-SNAPSHOT")
 
     implementation("org.jctools:jctools-core:3.0.0")
     implementation("io.ktor:ktor-network:$ktorVersion")
-    implementation("com.github.asyncmc:raknet-protocol:0.1.0-SNAPSHOT")
 
-    testImplementation(kotlin("test-junit5", embeddedKotlinVersion))
+    testImplementation(kotlin("test-junit5"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0-M1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0-M1")
@@ -83,9 +90,22 @@ tasks.withType<Test> {
     }
 }
 
+sourceSets {
+    main {
+        java {
+            outputDir = buildDir.resolve("classes/kotlin/main")
+        }
+    }
+    test {
+        java {
+            outputDir = buildDir.resolve("classes/kotlin/test")
+        }
+    }
+}
+
 jacoco {
     //toolVersion = jacocoVersion
-    reportsDir = file("$buildDir/reports/jacoco")
+    reportsDirectory.set(file("$buildDir/reports/jacoco"))
 }
 
 tasks {
