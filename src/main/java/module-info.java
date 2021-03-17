@@ -1,10 +1,10 @@
-import com.github.asyncmc.protocol.bedrock.BedrockProtocolModule;
+import com.github.asyncmc.protocol.bedrock.BedrockProtocolModuleLoader;
 
 module com.github.asyncmc.protocol.bedrock {
     requires com.github.asyncmc.protocol.raknet.api;
 
     requires com.github.asyncmc.module.api;
-    provides com.github.asyncmc.module.api.AsyncMcModule with BedrockProtocolModule;
+    provides com.github.asyncmc.module.api.ModuleLoader with BedrockProtocolModuleLoader;
 
     requires kotlin.stdlib;
     requires ktor.network;
